@@ -1,0 +1,73 @@
+import pcbnew
+
+def create_complex_project():
+    # Create a new project
+    project = pcbnew.PROJECT_TEMPLATE()
+    
+    # Set project options
+    project.SetTitle("Complex Sensor Project")
+    
+    # Create a new schematic sheet
+    sheet = project.GetSheet(0)
+    
+    # Add a resistor component
+    resistor = sheet.FindComponentLibItem("Device", "R")
+    component1 = sheet.AddComponent(resistor)
+    component1.SetValue("R1")
+    
+    # Add a capacitor component
+    capacitor = sheet.FindComponentLibItem("Device", "C")
+    component2 = sheet.AddComponent(capacitor)
+    component2.SetValue("C1")
+    
+    # Add Lidar sensor
+    lidar = sheet.FindComponentLibItem("Sensor", "Lidar")
+    lidar_component = sheet.AddComponent(lidar)
+    lidar_component.SetValue("Lidar1")
+    
+    # Add Proximity sensor
+    proximity = sheet.FindComponentLibItem("Sensor", "Proximity")
+    proximity_component = sheet.AddComponent(proximity)
+    proximity_component.SetValue("Proximity1")
+    
+    # Add Temperature sensor
+    temperature = sheet.FindComponentLibItem("Sensor", "Temperature")
+    temperature_component = sheet.AddComponent(temperature)
+    temperature_component.SetValue("Temp1")
+    
+    # Add Optical sensor
+    optical = sheet.FindComponentLibItem("Sensor", "Optical")
+    optical_component = sheet.AddComponent(optical)
+    optical_component.SetValue("Optical1")
+    
+    # Connect the components with wires
+    wire1 = sheet.FindComponentLibItem("Net", "Wire")
+    connection1 = sheet.AddConnection()
+    connection1.SetComponent(component1)
+    connection1.SetItem(resistor)
+    
+    connection2 = sheet.AddConnection()
+    connection2.SetComponent(component2)
+    connection2.SetItem(capacitor)
+    
+    connection3 = sheet.AddConnection()
+    connection3.SetComponent(lidar_component)
+    connection3.SetItem(lidar)
+    
+    connection4 = sheet.AddConnection()
+    connection4.SetComponent(proximity_component)
+    connection4.SetItem(proximity)
+    
+    connection5 = sheet.AddConnection()
+    connection5.SetComponent(temperature_component)
+    connection5.SetItem(temperature)
+    
+    connection6 = sheet.AddConnection()
+    connection6.SetComponent(optical_component)
+    connection6.SetItem(optical)
+    
+    # Save the project
+    project.Save("Complex_Sensor_Project.kicad_pcb")
+
+if __name__ == "__main__":
+    create_complex_project()
